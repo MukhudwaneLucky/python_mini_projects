@@ -1,3 +1,12 @@
+# Word count
+# Ask the user what's on their mind.
+# Then after the user responds,
+# count the number of words in the sentence and print that as an output.
+def word_count():
+    # Ask the user what's on their mind.
+    user_input = input("what's on your mind : ")
+
+
 # Mad libs game
 
 # Ask the user for an input.
@@ -18,7 +27,7 @@ def mad_libs():
         noun2 = input("choose a noun : ")
         place = input("name a place : ")
         adjective = input("choose an adjective (describing word) : ")
-        noun3 = input("choose a noun")
+        noun3 = input("choose a noun : ")
         # displays the story based on the users input
         print("---------------------------------------------")
         print("Be kind to your", noun, "- footed", p_noun)
@@ -49,7 +58,7 @@ def even_or_odd():
     # get user input
     print("Welcome to Odd or Even!")
     print("Enter a number between 1 and 1000")
-    number_input = int(input("What number are you thinking of?"))
+    number_input = int(input("What number are you thinking of? : "))
 
     # check if the number is in range
     if number_input > 1000 or number_input < 1:
