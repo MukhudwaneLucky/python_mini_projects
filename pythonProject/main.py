@@ -3,6 +3,57 @@ import csv
 import string
 
 
+# Is a palindrome
+# Ask the user to give you five words.
+# Then check if any of the five words is a palindrome.
+# A palindrome is a word that remains the same whether it's read forward or backward.
+def is_a_palindrome():
+    # ask the user for input
+    word = input("enter five words : ")
+    print("Your word is : ", word)
+    palindrome_word = ""
+    for i in range(len(word) - 1, -1, -1):
+        palindrome_word += word[i]
+    # check if its a paindrome
+    if word.__eq__(palindrome_word):
+        print("")
+
+# Guess the number
+# You ask a user to guess a number between 1 and 50.
+# If they guess outside that range,
+# you prompt with an error encouraging them to choose a number within the proper range.
+# Whenever they guess the wrong number you ask if they want to keep playing or if they'd like to quit.
+# Finally, when the user eventually guesses the right number you congratulate them and
+# show the number of attempts they had.
+def guess_the_number():
+    count = 0
+    # ask the user for a number
+    number = int(input("enter a number between 1 and 50 : "))
+    # check if the number is with-in range
+    while (number > 50) or (number < 1):
+        print("Oops, that number is not between 1 and 50, try again : ")
+        number = int(input("enter a number between 1 and 50 : "))
+        count += 1
+    # display the number and attempts
+    print("Your number is ", number, ", it took you ", count, " guesses to get it right")
+
+
+# What's my acronym?
+# Ask the user to enter the full meaning of an organization
+# or concept and you'll provide the acronym to the user.
+def acronym_generator():
+    # ask the user for input
+    user_input = input("enter the full meaning of an organization or concept : ")
+    # acronym generation
+    words = user_input.split()
+    # access each word and get the first char
+    acronym_name = ""
+    for word in words:
+        acronym_name += word[0:1]
+    # display acronym
+    print("the acronym for ", user_input, " is ", acronym_name.upper())
+
+
 # Biography info
 # Ask a user for their personal information
 # one question at a time. Then check that the
@@ -132,4 +183,7 @@ if __name__ == '__main__':
     # even_or_odd()
     # mad_libs()
     # word_counter()
-    biography_info()
+    # biography_info()
+    # acronym_generator()
+    # guess_the_number()
+    is_a_palindrome()
