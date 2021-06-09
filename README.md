@@ -1,4 +1,4 @@
-# python_mini_projects
+# Python Mini Projects
 
 ### Project Tutorial 1 : Conway's Game of Life Simulation
 In this project, i explored Conway’s Game of Life. i learned how to
