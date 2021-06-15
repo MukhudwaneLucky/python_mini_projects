@@ -63,6 +63,20 @@ class Dialog(abc.ABC):
         """
         return sents, 0.0, kwargs
 
+    @abs.abstractmethod
+    def respond(self, sents, confidence, **kwargs):
+        """
+            Creates a response given the input utterances and the current
+            state of the dialog, along with any arguments passed in from
+            the listen or the interpret methods.
+        :param sents:       interpreted sentences
+        :param confidence:  a confidence score
+        :param kwargs:      arbitrary keyword arguments
+        :return: a text-based response
+        """
+        return None
+
+
 # run
 if __name__ == '__main__':
     print("Starting Chatbot...")
