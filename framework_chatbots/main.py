@@ -15,13 +15,13 @@ class Dialog(abc.ABC):
             the interpret method to determine the response. If a response
             is requested, the respond method is used to generate a text
             response based on the most recent input and the current state.
-            :param text     -> text as a string
-            :param response -> a boolean indicating if initiative has passed to
+            :param text: text as a string
+            :param response: a boolean indicating if initiative has passed to
                             the Dialog and a response is required. if False, Dialog
                             listens and updates internal state
-            :param **kwargs   -> arbitrary keyword arguments which may contain other
+            :param kwargs: arbitrary keyword arguments which may contain other
                             contextual info like user, session id or transcription score
-            :return a response if required, None if not, and a confidence score (0.0 - 1.0)
+            :return: a response if required, None if not, and a confidence score (0.0 - 1.0)
         """
         # parse the input
         sents = self.parse(text)
@@ -48,6 +48,20 @@ class Dialog(abc.ABC):
         """
         return []
 
+    @abs.abstractmethod
+    def interpret(self, sents, **kwargs):
+        """
+            Interprets the utterance passed in as a list of parsed sentences,
+            updates the internal state of the dialog, computes a confidence
+            of the interpretation. May also return arguments specific to the
+            response mechanism.
+        :param sents: an incoming list of parsed sentences
+        :param kwargs: arbitrary keyword arguments
+        :return: interpreted parsed sentences that have been filtered based
+                whether they require a response, a confidence score, updated
+                keyword arguments to influence respond method
+        """
+        return sents, 0.0, kwargs
 
 # run
 if __name__ == '__main__':
