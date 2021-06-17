@@ -1,6 +1,7 @@
 # import program modules
 import abc
-
+from collections.abc import Sequence
+from operator import itemgetter
 
 class Dialog(abc.ABC):
     """
@@ -76,6 +77,37 @@ class Dialog(abc.ABC):
         """
         return None
 
+
+class SimpleConversation(Dialog, Sequence):
+    """
+        Simple version of a conversation. Inherits the behaviour of
+        Dialog class. Main role is to maintain state across a sequence
+        of dialogs.
+    """
+
+    def __init__(self, dialogs):
+        self._dialogs = dialogs
+
+    def __getitem__(self, idx):
+        return self._dialogs[idx]
+
+    def __len__(self):
+        return len(self._dialogs)
+
+    def listen(self, text, response=True, **kwargs):
+        """
+            Returns the best confidence response. The result is a list of
+            (responses, confidence) tuples. The SimpleConversation will
+            simply return the response with the highest confidence by
+            using the itemgetter operator to retrieve the max by the
+            second element of the tuple.
+        """
+        responses = [
+            dialog.listen(text, response, **kwargs)
+            for dialog in self._dialogs
+        ]
+        # responses is a list of (response, confidence) pairs
+        return max(responses, key=itemgetter(1))
 
 # run
 if __name__ == '__main__':
